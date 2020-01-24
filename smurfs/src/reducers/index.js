@@ -21,7 +21,13 @@ export const reducer = (state = initialState, action) => {
             return {
             isLoading: false,
             error: "",
-            smurfs: action.payload
+            smurfs: action.payload,
+            newSmurf: {
+                name: '',
+                age: '',
+                height: '',
+                id: ''
+            }
             }
         case 'GET_FAIL':
             return {
@@ -32,6 +38,7 @@ export const reducer = (state = initialState, action) => {
         case 'ADD_SMURF':
             return {
                 ...state,
+                isLoading: true,
                 smurfs: [...state.smurfs, action.payload]
                 }
             

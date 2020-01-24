@@ -4,7 +4,7 @@ import { addSmurf } from '../actions/index.js';
 
 function SmurfForm(props) {
     const [newSmurf, setNewSmurf] = useState({
-        name:  '',
+        name: '',
         age:  '',
         height:  '',
         id:  ''
@@ -18,8 +18,23 @@ function SmurfForm(props) {
         })
     }
 
+    const resetForm = (event) => {
+        event.preventDefault();
+        setNewSmurf({
+            name: '',
+            age: '',
+            height: '',
+            id: ''
+        })
+    }
+
+
+
     return (
         <div>
+            {/* {props.isLoading && props.smurfs && setNewSmurf({name: '', age: '', height: '', id: ''})} */}
+            {!props.isLoading && 
+            <div>
             <form>
                 <label>
                     Name:
@@ -49,7 +64,10 @@ function SmurfForm(props) {
                     />
                 </label>
             </form>
-            <button onClick={() => props.addSmurf(newSmurf)}>Add Smurf</button>
+            <div onClick={resetForm}>
+                <button onClick={() => props.addSmurf(newSmurf)}>Add Smurf</button>
+            </div>
+            </div>}
         </div>
     )
 } 
@@ -57,7 +75,7 @@ function SmurfForm(props) {
 const mapStateToProps = (state) => {
     return {
         ...state,
-
+        isLoading: state.isLoading
     }
 }
 
